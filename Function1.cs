@@ -21,6 +21,7 @@ namespace FunctionAppNine
         {
             var HttpRequests = req.Headers;
             var key = "";
+            var volleyResponse = new VollyResponse();
             if (HttpRequests.ContainsKey("Custom"))
             {
                 key = HttpRequests.Where(x => x.Key == "Custom").FirstOrDefault().Value;
@@ -35,7 +36,15 @@ namespace FunctionAppNine
             var jwtSecurityToken = handler.ReadJwtToken(token);
              email = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == "emails").Value;
             }
-            return new OkObjectResult(email);
+            volleyResponse.Email = email;
+            return new OkObjectResult(volleyResponse);
         }
     }
+
+    public class VollyResponse
+    {
+
+        public string Email { get; set; }
+    }
+
 }
