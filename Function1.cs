@@ -31,8 +31,11 @@ namespace FunctionAppNine
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
             var email = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == "emails").Value;
-
-            return new OkObjectResult("");
+            if(email is null)
+            {
+                email = "no email provide";
+            }
+            return new OkObjectResult(email);
         }
     }
 }
