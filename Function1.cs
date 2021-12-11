@@ -14,7 +14,7 @@ namespace FunctionAppNine
 {
     public static class Function1
     {
-        [FunctionName("AppNine")]
+        [FunctionName("App10")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
